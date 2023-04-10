@@ -50,6 +50,21 @@ type Plugin struct {
 	logger hclog.Logger
 }
 
+// Resolve implements the NodeResolver Attest RPC. Resolve resolves additional selectors for a given agent.
+func (p *Plugin) Resolve(ctx context.Context, req *noderesolverv1.ResolveRequest) (*noderesolverv1.ResolveResponse, error) {
+	config, err := p.getConfig()
+	if err != nil {
+		return nil, err
+	}
+
+	// TODO: Implement the RPC behavior. The following line silences compiler
+	// warnings and can be removed once the configuration is referenced by the
+	// implementation.
+	config = config
+
+	return nil, status.Error(codes.Unimplemented, "not implemented")
+}
+
 // SetLogger is called by the framework when the plugin is loaded and provides
 // the plugin with a logger wired up to SPIRE's logging facilities.
 // TODO: Remove if the plugin does not need the logger.
@@ -63,21 +78,6 @@ func (p *Plugin) SetLogger(logger hclog.Logger) {
 func (p *Plugin) BrokerHostServices(broker pluginsdk.ServiceBroker) error {
 	// TODO: Use the broker to obtain host service clients
 	return nil
-}
-
-// Attest implements the NodeResolver Attest RPC
-func (p *Plugin) Resolve(ctx context.Context, req *noderesolverv1.ResolveRequest) (*noderesolverv1.ResolveResponse, error) {
-	config, err := p.getConfig()
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: Implement the RPC behavior. The following line silences compiler
-	// warnings and can be removed once the configuration is referenced by the
-	// implementation.
-	config = config
-
-	return nil, status.Error(codes.Unimplemented, "not implemented")
 }
 
 // Configure configures the plugin. This is invoked by SPIRE when the plugin is
