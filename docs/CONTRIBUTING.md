@@ -49,5 +49,5 @@ release version. The release branch in SPIRE is updated to depend explicitly
 on that version (i.e. `go get github.com/spiffe/spire-plugin-sdk@<version>`).
 
 Relying on a pseudo versions means that this repository only needs tags
-for the offically released versions, while still allowing SPIRE to work with
+for the officially released versions, while still allowing SPIRE to work with
 unreleased changes during development.
